@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Progress } from '@/components/ui/progress';
 import { Badge } from '@/components/ui/badge';
-import { ChevronLeft, ChevronRight, CheckCircle, ArrowLeft, Share2, Copy, Check } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle, ArrowLeft, Share2, RotateCcw } from 'lucide-react';
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import testData from '@/data.json';
@@ -201,7 +201,7 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
     '친화성': 0,
     '신경성': 0,
   });
-  const [copied, setCopied] = useState(false);
+
   const [matchedCharacter, setMatchedCharacter] = useState<any>(null);
 
   useEffect(() => {
@@ -312,17 +312,10 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
     } else {
       // 공유 API가 지원되지 않는 경우 클립보드에 복사
       await navigator.clipboard.writeText(shareText);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
     }
   };
 
-  const handleCopyLink = async () => {
-    const shareText = generateShareText();
-    await navigator.clipboard.writeText(shareText);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 p-4">
@@ -330,7 +323,7 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
         {/* Header */}
         <div className="text-center">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            BIG5 기반 성격 진단 분석 결과
+            BIG5 기반 직장인 유형 성격 진단 분석 결과
           </h1>
           <p className="text-gray-600">
             당신의 Big5 성격 진단 분석 결과입니다
@@ -382,7 +375,7 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                       >
                         <CardHeader className="text-center pb-2">
                           <CardTitle className="text-lg text-gray-900 mb-1">
-                            {getTraitName(trait)} ({getTraitEnglishName(trait)})
+                            {getTraitName(trait)} 
                           </CardTitle>
                         </CardHeader>
                         <CardContent className="flex flex-col flex-1 justify-between space-y-4">
@@ -450,7 +443,7 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
           </CardHeader>
           <CardContent className="text-center space-y-4">
             <p className="text-gray-600">
-              친구들과 함께 나의 오피스 캐릭터를 공유해보세요!
+              친구들과 함께 big5기반 직장인 성격 유형 테스트 결과를 공유해보세요!
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button 
@@ -461,21 +454,12 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                 결과 공유하기
               </Button>
               <Button 
-                onClick={handleCopyLink}
+                onClick={() => window.location.reload()}
                 variant="outline"
                 className="border-gray-300 hover:bg-gray-50"
               >
-                {copied ? (
-                  <>
-                    <Check className="w-4 h-4 mr-2" />
-                    복사 완료!
-                  </>
-                ) : (
-                  <>
-                    <Copy className="w-4 h-4 mr-2" />
-                    링크 복사
-                  </>
-                )}
+                <RotateCcw className="w-4 h-4 mr-2" />
+                다시하기
               </Button>
             </div>
           </CardContent>
@@ -497,42 +481,36 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
 }
 
 function getTraitDescription(trait: Trait, percentage: number): string {
-  const descriptions: Record<Trait, { low: string; medium: string; high: string }> = {
+  const descriptions: Record<Trait, { low: string; high: string }> = {
     '개방성': {
-      low: '창의적이고 자유로운 성향입니다.',
-      medium: '탐색적이면서도 유연합니다.',
-      high: '창의적이고 모험적인 성향입니다.',
+      low: '익숙하고 실용적인걸 선호합니다.',
+      high: '창의적이고 변화를 즐깁니다.',
     },
     '성실성': {
-      low: '자유롭고 즉흥적인 성향입니다.',
-      medium: '계획적이면서도 유연합니다.',
+      low: '자유롭고 즉흥적입니다.',
       high: '체계적이고 책임감이 강합니다.',
     },
     '외향성': {
-      low: '조용하고 내향적인 성향입니다.',
-      medium: '상황에 따라 적절히 소통합니다.',
-      high: '활발하고 사교적인 성향입니다.',
+      low: '조용하고 내향적입니다.',
+      high: '활발하고 사교적입니다.',
     },
     '친화성': {
       low: '직설적이고 경쟁적인 성향입니다.',
-      medium: '협력적이면서도 자기주장을 합니다.',
       high: '친절하고 신뢰할 수 있는 성향입니다.',
     },
     '신경성': {
-      low: '감정적으로 안정적입니다.',
-      medium: '일반적인 스트레스 수준을 가집니다.',
-      high: '스트레스에 민감할 수 있습니다.',
+      low: '무던하고 감정적으로 안정적입니다.',
+      high: '예민하고 스트레스에 민감합니다.',
     },
   };
 
-  if (percentage < 40) return descriptions[trait].low;
-  if (percentage < 70) return descriptions[trait].medium;
+  if (percentage < 50) return descriptions[trait].low;
   return descriptions[trait].high;
 }
 
 function getTraitLowLabel(trait: Trait): string {
   const labels: Record<Trait, string> = {
-    '개방성': '완고함, 실용적',
+    '개방성': '익숙함, 실용적',
     '성실성': '자유분방, 느긋함',
     '외향성': '조용함, 차분함',
     '친화성': '냉정함, 냉소적',
@@ -543,7 +521,7 @@ function getTraitLowLabel(trait: Trait): string {
 
 function getTraitHighLabel(trait: Trait): string {
   const labels: Record<Trait, string> = {
-    '개방성': '유연함, 모험적',
+    '개방성': '도전적, 모험적',
     '성실성': '체계적, 신중함',
     '외향성': '사교적, 활발함',
     '친화성': '다정함, 친절함',
