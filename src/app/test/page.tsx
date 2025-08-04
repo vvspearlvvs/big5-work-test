@@ -334,6 +334,7 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
         {matchedCharacter && (
           <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
             <CardHeader className="text-center">
+              <div className="text-6xl mb-4">{matchedCharacter.name.split(' ')[0]}</div>
               <CardTitle className="text-2xl text-gray-900 mb-4">
                 {matchedCharacter.name}
               </CardTitle>
@@ -342,27 +343,27 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
-              <div className="text-center">
-                <p className="text-gray-700 leading-relaxed mb-4">
-                  {matchedCharacter.description.split('<br/>').map((line, index) => (
-                    <span key={index}>
-                      {line}
-                      {index < matchedCharacter.description.split('<br/>').length - 1 && <br />}
-                    </span>
-                  ))}
-                </p>
-              </div>
-
-              {/* Meme Section */}
-              <div className="text-center">
-                <div className="flex flex-wrap justify-center gap-3">
-                  {matchedCharacter.meme.map((meme: string, index: number) => (
-                    <div key={index} className="bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full text-sm font-medium text-gray-800">
-                      {meme}
-                    </div>
-                  ))}
+                <div className="text-center">
+                  <p className="text-gray-700 leading-relaxed mb-4">
+                    {matchedCharacter.description.split('<br/>').map((line, index) => (
+                      <span key={index}>
+                        {line}
+                        {index < matchedCharacter.description.split('<br/>').length - 1 && <br />}
+                      </span>
+                    ))}
+                  </p>
                 </div>
-              </div>
+
+                {/* Meme Section */}
+                <div className="text-center">
+                  <div className="flex flex-wrap justify-center gap-3">
+                    {matchedCharacter.meme.map((meme: string, index: number) => (
+                      <div key={index} className="bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full text-sm font-medium text-gray-800">
+                        {meme}
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
                 {/* Personality Analysis - 각 trait별 개별 카드로 분리 */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -428,8 +429,8 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                     </Card>
                   )}
                 </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
         )}
 
 
@@ -562,3 +563,5 @@ function getTraitEnglishName(trait: string): string {
   };
   return englishNames[trait] || trait;
 } 
+
+ 
