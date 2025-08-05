@@ -19,11 +19,11 @@ interface TestState {
 }
 
 const traitColors: Record<Trait, string> = {
-  '개방성': 'bg-purple-100 text-purple-800 border-purple-200',
-  '성실성': 'bg-blue-100 text-blue-800 border-blue-200',
-  '외향성': 'bg-green-100 text-green-800 border-green-200',
-  '친화성': 'bg-orange-100 text-orange-800 border-orange-200',
-  '신경성': 'bg-red-100 text-red-800 border-red-200',
+  '개방성': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+  '성실성': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
+  '외향성': 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+  '친화성': 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+  '신경성': 'bg-blue-500/20 text-blue-300 border-blue-500/30',
 };
 
 const traitNames: Record<Trait, string> = {
@@ -89,14 +89,14 @@ export default function TestPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-cyan-900">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-white mb-2">
             직장인 성격 유형 테스트
           </h1>
-          <p className="text-gray-600">
+          <p className="text-purple-100 font-medium">
             {testState.currentQuestion + 1} / {testData.questions.length}
           </p>
         </div>
@@ -104,25 +104,25 @@ export default function TestPage() {
         {/* Progress Bar */}
         <div className="max-w-2xl mx-auto mb-8">
           <div className="relative">
-            <Progress value={progress} className="h-3 bg-gray-200" />
-            <div className="absolute top-0 left-0 h-3 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full transition-all duration-500 ease-out" 
+            <Progress value={progress} className="h-3 bg-gray-700" />
+            <div className="absolute top-0 left-0 h-3 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 rounded-full transition-all duration-500 ease-out" 
                  style={{ width: `${progress}%` }}></div>
           </div>
         </div>
 
         {/* Question Card */}
         <div className="max-w-2xl mx-auto">
-          <Card className="border-0 shadow-xl bg-white/90 backdrop-blur-sm transform hover:shadow-2xl transition-all duration-300">
+          <Card className="border-0 shadow-xl bg-white/10 backdrop-blur-sm border border-purple-500/20 transform hover:shadow-2xl transition-all duration-300">
             <CardHeader>
               <div className="flex items-center justify-between mb-4">
-                <Badge className={`${traitColors[currentTrait]} border`}>
+                <Badge className={`${traitColors[currentTrait]} border backdrop-blur-sm`}>
                   {traitNames[currentTrait]}
                 </Badge>
-                <span className="text-sm text-gray-500">
+                <span className="text-sm text-purple-200">
                   질문 {testState.currentQuestion + 1}
                 </span>
               </div>
-              <CardTitle className="text-xl text-gray-900 leading-relaxed">
+              <CardTitle className="text-xl text-white leading-relaxed">
                 {currentQuestion.question}
               </CardTitle>
             </CardHeader>
@@ -137,8 +137,8 @@ export default function TestPage() {
                     variant={isSelected ? "default" : "outline"}
                     className={`w-full justify-start p-6 h-auto text-left transition-all duration-300 transform hover:scale-105 ${
                       isSelected 
-                        ? 'bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg' 
-                        : 'bg-white hover:bg-gray-50 text-gray-900 border-gray-200 hover:border-blue-300 hover:shadow-md'
+                        ? 'bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-600 text-white shadow-lg' 
+                        : 'bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-purple-500/30 hover:border-purple-400/50 hover:shadow-md'
                     }`}
                     onClick={() => handleAnswer(answer)}
                   >
@@ -146,9 +146,9 @@ export default function TestPage() {
                       <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center transition-all duration-300 ${
                         isSelected 
                           ? 'border-white bg-white' 
-                          : 'border-gray-300 bg-white'
+                          : 'border-purple-400 bg-transparent'
                       }`}>
-                        {isSelected && <CheckCircle className="w-4 h-4 text-blue-600" />}
+                        {isSelected && <CheckCircle className="w-4 h-4 text-purple-600" />}
                       </div>
                       <span className="flex-1 leading-relaxed">{option}</span>
                     </div>
@@ -164,7 +164,7 @@ export default function TestPage() {
               variant="outline"
               onClick={handlePrevious}
               disabled={testState.currentQuestion === 0}
-              className="flex items-center gap-2 hover:shadow-md transition-all duration-300"
+              className="flex items-center gap-2 hover:shadow-md transition-all duration-300 bg-white/10 backdrop-blur-sm border-purple-500/30 text-white hover:bg-white/20"
             >
               <ChevronLeft className="w-4 h-4" />
               이전
@@ -173,7 +173,7 @@ export default function TestPage() {
             <Button
               onClick={handleNext}
               disabled={!canProceed}
-              className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="flex items-center gap-2 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-600 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
             >
               {testState.currentQuestion === testData.questions.length - 1 ? '결과 보기' : '다음'}
               <ChevronRight className="w-4 h-4" />
@@ -183,7 +183,7 @@ export default function TestPage() {
 
         {/* Back to Home */}
         <div className="text-center mt-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 text-sm transition-colors duration-300">
+          <Link href="/" className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-200 text-sm transition-colors duration-300">
             <ArrowLeft className="w-4 h-4" />
             메인으로 돌아가기
           </Link>
@@ -318,33 +318,33 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
 
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 p-4">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-cyan-900 p-4">
       <div className="max-w-4xl mx-auto space-y-8">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            BIG5 기반 직장인 유형 성격 진단 분석 결과
+          <h1 className="text-3xl font-bold text-white mb-2">
+            Big5 기반 직장인 유형 테스트 결과
           </h1>
-          <p className="text-gray-600">
-            당신의 Big5 성격 진단 분석 결과입니다
+          <p className="text-purple-100 font-medium">
+            당신의 진짜 오피스 페르소나 결과입니다
           </p>
         </div>
 
         {/* Character Card */}
         {matchedCharacter && (
-          <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+          <Card className="shadow-xl border-0 bg-white/10 backdrop-blur-sm border border-purple-500/20">
             <CardHeader className="text-center">
-              <div className="text-6xl mb-4">{matchedCharacter.name.split(' ')[0]}</div>
-              <CardTitle className="text-2xl text-gray-900 mb-4">
+              <div className="text-6xl mb-4 text-white">{matchedCharacter.name.split(' ')[0]}</div>
+              <CardTitle className="text-2xl text-white mb-4">
                 {matchedCharacter.name}
               </CardTitle>
-              <CardDescription className="text-gray-600">
+              <CardDescription className="text-purple-100 font-medium">
                 {matchedCharacter.summary}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
                 <div className="text-center">
-                  <p className="text-gray-700 leading-relaxed mb-4">
+                  <p className="text-purple-100 leading-relaxed mb-4 font-medium">
                     {matchedCharacter.description.split('<br/>').map((line, index) => (
                       <span key={index}>
                         {line}
@@ -358,7 +358,7 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                 <div className="text-center">
                   <div className="flex flex-wrap justify-center gap-3">
                     {matchedCharacter.meme.map((meme: string, index: number) => (
-                      <div key={index} className="bg-gradient-to-r from-blue-100 to-purple-100 px-4 py-2 rounded-full text-sm font-medium text-gray-800">
+                      <div key={index} className="bg-gradient-to-r from-purple-500/20 to-cyan-500/20 px-4 py-2 rounded-full text-sm font-medium text-cyan-300 border border-cyan-500/30">
                         {meme}
                       </div>
                     ))}
@@ -372,26 +372,26 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                     return (
                       <Card
                         key={trait}
-                        className="shadow-xl border-0 bg-white/80 backdrop-blur-sm flex flex-col h-full"
+                        className="shadow-xl border-0 bg-white/10 backdrop-blur-sm border border-purple-500/20 flex flex-col h-full"
                       >
                         <CardHeader className="text-center pb-2">
-                          <CardTitle className="text-lg text-gray-900 mb-1">
+                          <CardTitle className="text-lg text-white mb-1">
                             {getTraitName(trait)} 
                           </CardTitle>
                         </CardHeader>
                         <CardContent className="flex flex-col flex-1 justify-between space-y-4">
-                          <div className="text-center text-sm text-gray-600 mb-2">
+                          <div className="text-center text-sm text-purple-100 mb-2 font-medium">
                             {getTraitDescription(trait as Trait, percentage)}
                           </div>
                           
                           {/* Trait Spectrum */}
                           <div className="space-y-2">
-                            <div className="flex justify-between text-xs text-gray-600 mb-1">
+                            <div className="flex justify-between text-xs text-purple-200 mb-1">
                               <span>{getTraitLowLabel(trait as Trait)}</span>
                               <span>{getTraitHighLabel(trait as Trait)}</span>
                             </div>
                             <div className="relative">
-                              <div className="h-3 bg-gray-200 rounded-full">
+                              <div className="h-3 bg-gray-700 rounded-full">
                                 <div 
                                   className={`absolute top-0 left-0 h-3 rounded-full transition-all duration-1000 ease-out ${getTraitGradient(trait as Trait)}`}
                                   style={{ width: `${percentage}%` }}
@@ -406,9 +406,9 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                   
                   {/* 특성 분석 카드 - matchedCharacter가 있을 때만 표시 */}
                   {matchedCharacter && (
-                    <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm flex flex-col h-full">
+                    <Card className="shadow-xl border-0 bg-white/10 backdrop-blur-sm border border-purple-500/20 flex flex-col h-full">
                       <CardHeader className="text-center pb-2">
-                        <CardTitle className="text-lg text-gray-900 mb-1">
+                        <CardTitle className="text-lg text-white mb-1">
                           결과 요약
                         </CardTitle>
                       </CardHeader>
@@ -416,9 +416,9 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                         <div className="grid grid-cols-2 gap-4">
                           {Object.entries(matchedCharacter.traits).map(([traitName, level]) => (
                             <div key={traitName} className="flex justify-center items-center space-x-2">
-                              <span className="text-gray-700 font-medium text-sm">{traitName}:</span>
+                              <span className="text-purple-100 font-medium text-sm">{traitName}:</span>
                               <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                                level === '높음' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+                                level === '높음' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-gray-500/20 text-gray-300 border border-gray-500/30'
                               }`}>
                                 {level as string}
                               </span>
@@ -436,28 +436,28 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
 
 
         {/* Share Section */}
-        <Card className="shadow-xl border-0 bg-white/80 backdrop-blur-sm">
+        <Card className="shadow-xl border-0 bg-white/10 backdrop-blur-sm border border-purple-500/20">
           <CardHeader>
-            <CardTitle className="text-xl text-center text-gray-900">
-              결과 공유하기
+            <CardTitle className="text-xl text-center text-white">
+              테스트 결과 공유하기
             </CardTitle>
           </CardHeader>
           <CardContent className="text-center space-y-4">
-            <p className="text-gray-600">
-              친구들과 함께 big5기반 직장인 성격 유형 테스트 결과를 공유해보세요!
+            <p className="text-purple-100 font-medium">
+              친구들과 함께 당신의 오피스 페르소나 결과를 공유해보세요!
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button 
                 onClick={handleShare}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
               >
                 <Share2 className="w-4 h-4 mr-2" />
-                결과 공유하기
+                공유하기
               </Button>
               <Button 
                 onClick={() => window.location.reload()}
                 variant="outline"
-                className="border-gray-300 hover:bg-gray-50"
+                className="border-purple-500/30 hover:bg-white/20 text-white bg-white/10 backdrop-blur-sm"
               >
                 <RotateCcw className="w-4 h-4 mr-2" />
                 다시하기
@@ -470,7 +470,7 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
         <div className="text-center">
           <Link 
             href="/"
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200"
+            className="inline-flex items-center text-purple-300 hover:text-purple-200 transition-colors duration-200"
           >
             <ArrowLeft className="w-4 h-4 mr-2" />
             홈으로 돌아가기
@@ -535,9 +535,9 @@ function getTraitGradient(trait: Trait): string {
   const gradients: Record<Trait, string> = {
     '개방성': 'bg-gradient-to-r from-purple-500 to-purple-600',
     '성실성': 'bg-gradient-to-r from-blue-500 to-blue-600',
-    '외향성': 'bg-gradient-to-r from-green-500 to-green-600',
-    '친화성': 'bg-gradient-to-r from-orange-500 to-orange-600',
-    '신경성': 'bg-gradient-to-r from-red-500 to-red-600',
+    '외향성': 'bg-gradient-to-r from-cyan-500 to-cyan-600',
+    '친화성': 'bg-gradient-to-r from-purple-500 to-blue-500',
+    '신경성': 'bg-gradient-to-r from-blue-500 to-cyan-500',
   };
   return gradients[trait];
 }
