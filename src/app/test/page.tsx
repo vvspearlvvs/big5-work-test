@@ -90,22 +90,22 @@ export default function TestPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-cyan-900">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-3 sm:px-4 py-3 sm:py-6 md:py-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-white mb-2">
+        <div className="text-center mb-3 sm:mb-6 md:mb-8">
+          <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white mb-1 sm:mb-2">
             직장인 성격 유형 테스트
           </h1>
-          <p className="text-purple-100 font-medium">
+          <p className="text-xs sm:text-sm md:text-base text-purple-100 font-medium">
             {testState.currentQuestion + 1} / {testData.questions.length}
           </p>
         </div>
 
         {/* Progress Bar */}
-        <div className="max-w-2xl mx-auto mb-8">
+        <div className="max-w-2xl mx-auto mb-3 sm:mb-6 md:mb-8">
           <div className="relative">
-            <Progress value={progress} className="h-3 bg-gray-700" />
-            <div className="absolute top-0 left-0 h-3 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 rounded-full transition-all duration-500 ease-out" 
+            <Progress value={progress} className="h-2 sm:h-3 bg-gray-700" />
+            <div className="absolute top-0 left-0 h-2 sm:h-3 bg-gradient-to-r from-purple-500 via-blue-500 to-cyan-500 rounded-full transition-all duration-500 ease-out" 
                  style={{ width: `${progress}%` }}></div>
           </div>
         </div>
@@ -114,19 +114,19 @@ export default function TestPage() {
         <div className="max-w-2xl mx-auto">
           <Card className="border-0 shadow-xl bg-white/10 backdrop-blur-sm border border-purple-500/20 transform hover:shadow-2xl transition-all duration-300">
             <CardHeader>
-              <div className="flex items-center justify-between mb-4">
-                <Badge className={`${traitColors[currentTrait]} border backdrop-blur-sm`}>
+              <div className="flex items-center justify-between mb-2 sm:mb-4">
+                <Badge className={`${traitColors[currentTrait]} border backdrop-blur-sm text-xs sm:text-sm`}>
                   {traitNames[currentTrait]}
                 </Badge>
-                <span className="text-sm text-purple-200">
+                <span className="text-xs sm:text-sm text-purple-200">
                   질문 {testState.currentQuestion + 1}
                 </span>
               </div>
-              <CardTitle className="text-xl text-white leading-relaxed">
+              <CardTitle className="text-sm sm:text-base md:text-lg lg:text-xl text-white leading-relaxed">
                 {currentQuestion.question}
               </CardTitle>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-2 sm:space-y-3 md:space-y-4">
               {currentQuestion.options.map((option, index) => {
                 const answer = String.fromCharCode(65 + index) as Answer;
                 const isSelected = testState.answers[testState.currentQuestion] === answer;
@@ -135,7 +135,7 @@ export default function TestPage() {
                   <Button
                     key={index}
                     variant={isSelected ? "default" : "outline"}
-                    className={`w-full justify-start p-6 h-auto text-left transition-all duration-300 transform hover:scale-105 ${
+                    className={`w-full justify-start p-2 sm:p-3 md:p-4 lg:p-6 h-auto text-left transition-all duration-300 transform hover:scale-105 ${
                       isSelected 
                         ? 'bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-600 text-white shadow-lg' 
                         : 'bg-white/10 backdrop-blur-sm hover:bg-white/20 text-white border-purple-500/30 hover:border-purple-400/50 hover:shadow-md'
@@ -143,14 +143,14 @@ export default function TestPage() {
                     onClick={() => handleAnswer(answer)}
                   >
                     <div className="flex items-center w-full">
-                      <div className={`w-6 h-6 rounded-full border-2 mr-4 flex items-center justify-center transition-all duration-300 ${
+                      <div className={`w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 rounded-full border-2 mr-1 sm:mr-2 md:mr-3 lg:mr-4 flex items-center justify-center transition-all duration-300 ${
                         isSelected 
                           ? 'border-white bg-white' 
                           : 'border-purple-400 bg-transparent'
                       }`}>
-                        {isSelected && <CheckCircle className="w-4 h-4 text-purple-600" />}
+                        {isSelected && <CheckCircle className="w-1 h-1 sm:w-2 sm:h-2 md:w-3 md:h-3 lg:w-4 lg:h-4 text-purple-600" />}
                       </div>
-                      <span className="flex-1 leading-relaxed">{option}</span>
+                      <span className="flex-1 leading-relaxed text-xs sm:text-sm md:text-base lg:text-lg">{option}</span>
                     </div>
                   </Button>
                 );
@@ -159,32 +159,32 @@ export default function TestPage() {
           </Card>
 
           {/* Navigation */}
-          <div className="flex justify-between mt-8">
+          <div className="flex justify-between mt-3 sm:mt-6 md:mt-8 gap-2 sm:gap-3 md:gap-4">
             <Button
               variant="outline"
               onClick={handlePrevious}
               disabled={testState.currentQuestion === 0}
-              className="flex items-center gap-2 hover:shadow-md transition-all duration-300 bg-white/10 backdrop-blur-sm border-purple-500/30 text-white hover:bg-white/20"
+              className="flex items-center gap-1 sm:gap-2 hover:shadow-md transition-all duration-300 bg-white/10 backdrop-blur-sm border-purple-500/30 text-white hover:bg-white/20 px-2 sm:px-3 md:px-4 lg:px-6 py-1 sm:py-2 md:py-3 text-xs sm:text-sm md:text-base"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4" />
               이전
             </Button>
-
+            
             <Button
               onClick={handleNext}
               disabled={!canProceed}
-              className="flex items-center gap-2 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-600 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+              className="flex items-center gap-1 sm:gap-2 bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-600 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 px-2 sm:px-3 md:px-4 lg:px-6 py-1 sm:py-2 md:py-3 text-xs sm:text-sm md:text-base"
             >
               {testState.currentQuestion === testData.questions.length - 1 ? '결과 보기' : '다음'}
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4" />
             </Button>
           </div>
         </div>
 
         {/* Back to Home */}
-        <div className="text-center mt-8">
-          <Link href="/" className="inline-flex items-center gap-2 text-purple-300 hover:text-purple-200 text-sm transition-colors duration-300">
-            <ArrowLeft className="w-4 h-4" />
+        <div className="text-center mt-3 sm:mt-6 md:mt-8">
+          <Link href="/" className="inline-flex items-center gap-1 sm:gap-2 text-purple-300 hover:text-purple-200 text-xs sm:text-sm transition-colors duration-300">
+            <ArrowLeft className="w-2 h-2 sm:w-3 sm:h-3 md:w-4 md:h-4" />
             메인으로 돌아가기
           </Link>
         </div>
@@ -315,17 +315,15 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
     }
   };
 
-
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-cyan-900 p-4">
-      <div className="max-w-4xl mx-auto space-y-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-900 via-blue-900 to-cyan-900 p-2 sm:p-4">
+      <div className="max-w-4xl mx-auto space-y-3 sm:space-y-6 md:space-y-8">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-3xl font-bold text-white mb-2">
+          <h1 className="text-lg sm:text-2xl md:text-3xl font-bold text-white mb-1 sm:mb-2">
             Big5 기반 직장인 유형 테스트 결과
           </h1>
-          <p className="text-purple-100 font-medium">
+          <p className="text-xs sm:text-sm md:text-base text-purple-100 font-medium">
             당신의 진짜 오피스 페르소나 결과입니다
           </p>
         </div>
@@ -334,17 +332,17 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
         {matchedCharacter && (
           <Card className="shadow-xl border-0 bg-white/10 backdrop-blur-sm border border-purple-500/20">
             <CardHeader className="text-center">
-              <div className="text-6xl mb-4 text-white">{matchedCharacter.name.split(' ')[0]}</div>
-              <CardTitle className="text-2xl text-white mb-4">
+              <div className="text-3xl sm:text-4xl md:text-6xl mb-2 sm:mb-4 text-white">{matchedCharacter.name.split(' ')[0]}</div>
+              <CardTitle className="text-lg sm:text-xl md:text-2xl text-white mb-2 sm:mb-4">
                 {matchedCharacter.name}
               </CardTitle>
-              <CardDescription className="text-purple-100 font-medium">
+              <CardDescription className="text-xs sm:text-sm md:text-base text-purple-100 font-medium">
                 {matchedCharacter.summary}
               </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-6">
+            <CardContent className="space-y-3 sm:space-y-6">
                 <div className="text-center">
-                  <p className="text-purple-100 leading-relaxed mb-4 font-medium">
+                  <p className="text-xs sm:text-sm md:text-base text-purple-100 leading-relaxed mb-2 sm:mb-4 font-medium">
                     {matchedCharacter.description.split('<br/>').map((line, index) => (
                       <span key={index}>
                         {line}
@@ -356,9 +354,9 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
 
                 {/* Meme Section */}
                 <div className="text-center">
-                  <div className="flex flex-wrap justify-center gap-3">
+                  <div className="flex flex-wrap justify-center gap-1 sm:gap-2 md:gap-3">
                     {matchedCharacter.meme.map((meme: string, index: number) => (
-                      <div key={index} className="bg-gradient-to-r from-purple-500/20 to-cyan-500/20 px-4 py-2 rounded-full text-sm font-medium text-cyan-300 border border-cyan-500/30">
+                      <div key={index} className="bg-gradient-to-r from-purple-500/20 to-cyan-500/20 px-2 sm:px-3 md:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-medium text-cyan-300 border border-cyan-500/30">
                         {meme}
                       </div>
                     ))}
@@ -366,7 +364,7 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                 </div>
 
                 {/* Personality Analysis - 각 trait별 개별 카드로 분리 */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-2 sm:gap-4 md:gap-6">
                   {Object.entries(scores).map(([trait, score], idx, arr) => {
                     const percentage = (score / 8) * 100;
                     return (
@@ -374,26 +372,26 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                         key={trait}
                         className="shadow-xl border-0 bg-white/10 backdrop-blur-sm border border-purple-500/20 flex flex-col h-full"
                       >
-                        <CardHeader className="text-center pb-2">
-                          <CardTitle className="text-lg text-white mb-1">
+                        <CardHeader className="text-center pb-1 sm:pb-2">
+                          <CardTitle className="text-xs sm:text-sm md:text-lg text-white mb-1">
                             {getTraitName(trait)} 
                           </CardTitle>
                         </CardHeader>
-                        <CardContent className="flex flex-col flex-1 justify-between space-y-4">
-                          <div className="text-center text-sm text-purple-100 mb-2 font-medium">
+                        <CardContent className="flex flex-col flex-1 justify-between space-y-2 sm:space-y-4">
+                          <div className="text-center text-xs sm:text-sm text-purple-100 mb-1 sm:mb-2 font-medium">
                             {getTraitDescription(trait as Trait, percentage)}
                           </div>
                           
                           {/* Trait Spectrum */}
-                          <div className="space-y-2">
+                          <div className="space-y-1 sm:space-y-2">
                             <div className="flex justify-between text-xs text-purple-200 mb-1">
                               <span>{getTraitLowLabel(trait as Trait)}</span>
                               <span>{getTraitHighLabel(trait as Trait)}</span>
                             </div>
                             <div className="relative">
-                              <div className="h-3 bg-gray-700 rounded-full">
+                              <div className="h-1 sm:h-2 md:h-3 bg-gray-700 rounded-full">
                                 <div 
-                                  className={`absolute top-0 left-0 h-3 rounded-full transition-all duration-1000 ease-out ${getTraitGradient(trait as Trait)}`}
+                                  className={`absolute top-0 left-0 h-1 sm:h-2 md:h-3 rounded-full transition-all duration-1000 ease-out ${getTraitGradient(trait as Trait)}`}
                                   style={{ width: `${percentage}%` }}
                                 ></div>
                               </div>
@@ -407,17 +405,17 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
                   {/* 특성 분석 카드 - matchedCharacter가 있을 때만 표시 */}
                   {matchedCharacter && (
                     <Card className="shadow-xl border-0 bg-white/10 backdrop-blur-sm border border-purple-500/20 flex flex-col h-full">
-                      <CardHeader className="text-center pb-2">
-                        <CardTitle className="text-lg text-white mb-1">
+                      <CardHeader className="text-center pb-1 sm:pb-2">
+                        <CardTitle className="text-xs sm:text-sm md:text-lg text-white mb-1">
                           결과 요약
                         </CardTitle>
                       </CardHeader>
-                      <CardContent className="flex flex-col flex-1 justify-center space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
+                      <CardContent className="flex flex-col flex-1 justify-center space-y-2 sm:space-y-4">
+                        <div className="grid grid-cols-2 gap-2 sm:gap-4">
                           {Object.entries(matchedCharacter.traits).map(([traitName, level]) => (
-                            <div key={traitName} className="flex justify-center items-center space-x-2">
-                              <span className="text-purple-100 font-medium text-sm">{traitName}:</span>
-                              <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                            <div key={traitName} className="flex justify-center items-center space-x-1 sm:space-x-2">
+                              <span className="text-purple-100 font-medium text-xs sm:text-sm">{traitName}:</span>
+                              <span className={`px-1 sm:px-2 py-1 rounded-full text-xs font-medium ${
                                 level === '높음' ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30' : 'bg-gray-500/20 text-gray-300 border border-gray-500/30'
                               }`}>
                                 {level as string}
@@ -433,33 +431,31 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
             </Card>
         )}
 
-
-
         {/* Share Section */}
         <Card className="shadow-xl border-0 bg-white/10 backdrop-blur-sm border border-purple-500/20">
           <CardHeader>
-            <CardTitle className="text-xl text-center text-white">
+            <CardTitle className="text-sm sm:text-lg md:text-xl text-center text-white">
               테스트 결과 공유하기
             </CardTitle>
           </CardHeader>
-          <CardContent className="text-center space-y-4">
-            <p className="text-purple-100 font-medium">
+          <CardContent className="text-center space-y-2 sm:space-y-4">
+            <p className="text-xs sm:text-sm md:text-base text-purple-100 font-medium">
               친구들과 함께 당신의 오피스 페르소나 결과를 공유해보세요!
             </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <div className="flex flex-col sm:flex-row gap-1 sm:gap-2 md:gap-3 justify-center">
               <Button 
                 onClick={handleShare}
-                className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                className="bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-500 hover:from-purple-700 hover:via-blue-700 hover:to-cyan-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 text-xs sm:text-sm md:text-base"
               >
-                <Share2 className="w-4 h-4 mr-2" />
+                <Share2 className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 공유하기
               </Button>
               <Button 
                 onClick={() => window.location.reload()}
                 variant="outline"
-                className="border-purple-500/30 hover:bg-white/20 text-white bg-white/10 backdrop-blur-sm"
+                className="border-purple-500/30 hover:bg-white/20 text-white bg-white/10 backdrop-blur-sm text-xs sm:text-sm md:text-base"
               >
-                <RotateCcw className="w-4 h-4 mr-2" />
+                <RotateCcw className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
                 다시하기
               </Button>
             </div>
@@ -470,9 +466,9 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
         <div className="text-center">
           <Link 
             href="/"
-            className="inline-flex items-center text-purple-300 hover:text-purple-200 transition-colors duration-200"
+            className="inline-flex items-center text-purple-300 hover:text-purple-200 transition-colors duration-200 text-xs sm:text-sm md:text-base"
           >
-            <ArrowLeft className="w-4 h-4 mr-2" />
+            <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
             홈으로 돌아가기
           </Link>
         </div>
