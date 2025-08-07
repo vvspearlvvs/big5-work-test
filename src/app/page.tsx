@@ -74,7 +74,7 @@ export default function Home() {
                 <div className="w-6 h-6 sm:w-8 sm:h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-lg flex items-center justify-center mr-2 sm:mr-3 md:mr-4">
                   <Users className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5 lg:w-6 lg:h-6 text-white" />
                 </div>
-                <h3 className="text-xs sm:text-sm md:text-lg lg:text-xl font-bold text-cyan-300">직장인 12유형</h3>
+                <h3 className="text-xs sm:text-sm md:text-lg lg:text-xl font-bold text-cyan-300">32가지 캐릭터</h3>
               </div>
               <p className="text-cyan-100 text-xs sm:text-sm font-medium">당신만의 직장인 페르소나 발견</p>
             </div>
