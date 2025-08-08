@@ -291,7 +291,6 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
     shareText += `내 주요 성향: ${traitNames[topTrait]} (${percentage}%)\n\n`;
     shareText += `📊 전체 결과\n`;
     shareText += `${traits.map(trait => `${traitNames[trait]}: ${Math.round((scores[trait] / maxScore) * 100)}%`).join('\n')}\n\n`;
-    shareText += `지금 테스트해보세요! 👉 https://big5-work-test.vercel.app`;
     
     return shareText;
   };
