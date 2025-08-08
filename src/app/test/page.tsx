@@ -284,14 +284,14 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
     let shareText = `🧠 Big5 직장인 성격 유형 테스트 결과\n\n`;
     
     if (matchedCharacter) {
-      shareText += `🏢 나의 오피스 캐릭터: ${matchedCharacter.name}\n`;
+      shareText += `🎭 나의 오피스 캐릭터: ${matchedCharacter.name}\n`;
       shareText += `${matchedCharacter.summary}\n\n`;
     }
     
     shareText += `내 주요 성향: ${traitNames[topTrait]} (${percentage}%)\n\n`;
     shareText += `📊 전체 결과\n`;
     shareText += `${traits.map(trait => `${traitNames[trait]}: ${Math.round((scores[trait] / maxScore) * 100)}%`).join('\n')}\n\n`;
-    shareText += `지금 테스트해보세요! 😇;
+    shareText += `지금 테스트해보세요! 😇`;
     
     return shareText;
   };
