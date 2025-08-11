@@ -151,6 +151,8 @@ MBTI로는 부족했던 당신의 진짜 성향, Big5 기반으로 찾아보세�
 ### Vercel 배포
 - [Vercel Deployments](https://vercel.com/jinjus-projects-2dee0798/big5-work-test/deployments)
 
+- [Vercel Analytics](https://vercel.com/jinjus-projects-2dee0798/big5-work-test/analytics)
+
 
 ### 환경 변수
 ```env
