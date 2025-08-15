@@ -79,7 +79,7 @@ MBTI로는 부족했던 당신의 진짜 성향, Big5 기반으로 찾아보세�
 친화성: 45%
 신경성: 20%
 
-지금 테스트해보세요! 👉 https://big5-work-test.vercel.app
+지금 테스트해보세요! 👉 https://www.big5test.online
 ```
 
 ## 🛠️ 기술 스택
@@ -154,9 +154,9 @@ MBTI로는 부족했던 당신의 진짜 성향, Big5 기반으로 찾아보세�
 - [Vercel Analytics](https://vercel.com/jinjus-projects-2dee0798/big5-work-test/analytics)
 
 
-### 환경 변수
+### 도메인 등록
 ```env
-NEXT_PUBLIC_APP_URL=https://your-domain.vercel.app
+NEXT_PUBLIC_APP_URL=https://www.big5test.online/
 ```
 
 ### 참고
@@ -167,3 +167,14 @@ NEXT_PUBLIC_APP_URL=https://your-domain.vercel.app
 - [Lucide](https://lucide.dev) - 아이콘
 
 ---
+
+## Sitemap 사용법
+
+이 프로젝트는 next-sitemap이 설정되어 있습니다.
+
+- `next build` 명령어 실행 후 자동으로 sitemap.xml과 robots.txt 파일이 생성됩니다.
+- 설정 파일은 프로젝트 루트의 `next-sitemap.config.js`에 있습니다.
+- 생성된 파일은 `public` 디렉토리에 저장됩니다.
+
+추가 설정이 필요한 경우 `next-sitemap.config.js` 파일을 수정하세요.
+자세한 내용은 [next-sitemap 공식 문서](https://github.com/iamvishnusankar/next-sitemap)를 참조하세요.

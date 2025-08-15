@@ -304,7 +304,7 @@ function TestResult({ answers }: { answers: (Answer | null)[] }) {
         await navigator.share({
           title: 'Big5 직장인 성격 유형 테스트 결과',
           text: shareText,
-          url: 'https://big5-work-test.vercel.app'
+          url: 'https://www.big5test.online'
         });
       } catch (error) {
         console.log('공유 취소됨');
