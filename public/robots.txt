@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.big5test.online/
+Host: https://big5test.online
 
 # Sitemaps
-Sitemap: https://www.big5test.online/sitemap.xml
+Sitemap: https://big5test.online/sitemap.xml

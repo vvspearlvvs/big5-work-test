@@ -31,6 +31,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
     <AdSense />
+    <AdSense />
         <Providers>{children}</Providers>
         <Analytics />
       </body>

@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://www.big5test.online/',
+  siteUrl: 'https://big5test.online',
   generateRobotsTxt: true,
   robotsTxtOptions: {
     policies: [

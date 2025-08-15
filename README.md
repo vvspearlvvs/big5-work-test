@@ -79,7 +79,7 @@ MBTI로는 부족했던 당신의 진짜 성향, Big5 기반으로 찾아보세�
 친화성: 45%
 신경성: 20%
 
-지금 테스트해보세요! 👉 https://www.big5test.online
+지금 테스트해보세요! 👉 https://big5test.online
 ```
 
 ## 🛠️ 기술 스택
@@ -156,7 +156,7 @@ MBTI로는 부족했던 당신의 진짜 성향, Big5 기반으로 찾아보세�
 
 ### 도메인 등록
 ```env
-NEXT_PUBLIC_APP_URL=https://www.big5test.online/
+NEXT_PUBLIC_APP_URL=https://big5test.online/
 ```
 
 ### 참고
